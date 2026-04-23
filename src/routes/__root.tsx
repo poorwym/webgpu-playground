@@ -19,7 +19,11 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
-  return <Outlet />
+  return (
+    <div id="__root__" className="h-screen w-screen">
+      <Outlet />
+    </div>
+  )
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
