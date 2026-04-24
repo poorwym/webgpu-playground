@@ -27,7 +27,9 @@ export default function RouteComponent() {
       // 获取 device
       const device = await adapter?.requestDevice()
 
-      if (!device) return
+      if (!device || !adapter) return
+
+      console.log('adapter: ', adapter.info, ' device ', device.adapterInfo)
 
       // WebGPU Context
       const context = canvas.getContext('webgpu')
