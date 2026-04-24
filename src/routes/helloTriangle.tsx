@@ -8,7 +8,7 @@ export const Route = createFileRoute('/helloTriangle')({
   component: RouteComponent,
 })
 
-export default function RouteComponent() {
+function RouteComponent() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
