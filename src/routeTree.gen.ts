@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RotatingCubeRoute = RotatingCubeRouteImport.update({
+  id: '/rotatingCube',
+  path: '/rotatingCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelloTriangleRoute = HelloTriangleRouteImport.update({
   id: '/helloTriangle',
   path: '/helloTriangle',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/rotatingCube': typeof RotatingCubeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/rotatingCube': typeof RotatingCubeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/rotatingCube': typeof RotatingCubeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/helloTriangle'
+  fullPaths: '/' | '/helloTriangle' | '/rotatingCube'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/helloTriangle'
-  id: '__root__' | '/' | '/helloTriangle'
+  to: '/' | '/helloTriangle' | '/rotatingCube'
+  id: '__root__' | '/' | '/helloTriangle' | '/rotatingCube'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
+  RotatingCubeRoute: typeof RotatingCubeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/rotatingCube': {
+      id: '/rotatingCube'
+      path: '/rotatingCube'
+      fullPath: '/rotatingCube'
+      preLoaderRoute: typeof RotatingCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/helloTriangle': {
       id: '/helloTriangle'
       path: '/helloTriangle'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HelloTriangleRoute: HelloTriangleRoute,
+  RotatingCubeRoute: RotatingCubeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
