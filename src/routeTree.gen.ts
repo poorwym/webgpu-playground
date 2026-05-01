@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TextureCubeRouteImport } from './routes/textureCube'
 import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TextureCubeRoute = TextureCubeRouteImport.update({
+  id: '/textureCube',
+  path: '/textureCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RotatingCubeRoute = RotatingCubeRouteImport.update({
   id: '/rotatingCube',
   path: '/rotatingCube',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/helloTriangle' | '/rotatingCube'
+  fullPaths: '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/helloTriangle' | '/rotatingCube'
-  id: '__root__' | '/' | '/helloTriangle' | '/rotatingCube'
+  to: '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
+  id: '__root__' | '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
   RotatingCubeRoute: typeof RotatingCubeRoute
+  TextureCubeRoute: typeof TextureCubeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/textureCube': {
+      id: '/textureCube'
+      path: '/textureCube'
+      fullPath: '/textureCube'
+      preLoaderRoute: typeof TextureCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rotatingCube': {
       id: '/rotatingCube'
       path: '/rotatingCube'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HelloTriangleRoute: HelloTriangleRoute,
   RotatingCubeRoute: RotatingCubeRoute,
+  TextureCubeRoute: TextureCubeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
