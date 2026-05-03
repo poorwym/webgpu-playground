@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TextureCubeRouteImport } from './routes/textureCube'
 import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
+import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
+import { Route as FractalCubeRouteImport } from './routes/fractalCube'
+import { Route as CubemapRouteImport } from './routes/cubemap'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TextureCubeRoute = TextureCubeRouteImport.update({
@@ -24,9 +27,24 @@ const RotatingCubeRoute = RotatingCubeRouteImport.update({
   path: '/rotatingCube',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstancedCubeRoute = InstancedCubeRouteImport.update({
+  id: '/instancedCube',
+  path: '/instancedCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelloTriangleRoute = HelloTriangleRouteImport.update({
   id: '/helloTriangle',
   path: '/helloTriangle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FractalCubeRoute = FractalCubeRouteImport.update({
+  id: '/fractalCube',
+  path: '/fractalCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CubemapRoute = CubemapRouteImport.update({
+  id: '/cubemap',
+  path: '/cubemap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,34 +55,68 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cubemap': typeof CubemapRoute
+  '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/instancedCube': typeof InstancedCubeRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cubemap': typeof CubemapRoute
+  '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/instancedCube': typeof InstancedCubeRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cubemap': typeof CubemapRoute
+  '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
+  '/instancedCube': typeof InstancedCubeRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
+  fullPaths:
+    | '/'
+    | '/cubemap'
+    | '/fractalCube'
+    | '/helloTriangle'
+    | '/instancedCube'
+    | '/rotatingCube'
+    | '/textureCube'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
-  id: '__root__' | '/' | '/helloTriangle' | '/rotatingCube' | '/textureCube'
+  to:
+    | '/'
+    | '/cubemap'
+    | '/fractalCube'
+    | '/helloTriangle'
+    | '/instancedCube'
+    | '/rotatingCube'
+    | '/textureCube'
+  id:
+    | '__root__'
+    | '/'
+    | '/cubemap'
+    | '/fractalCube'
+    | '/helloTriangle'
+    | '/instancedCube'
+    | '/rotatingCube'
+    | '/textureCube'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CubemapRoute: typeof CubemapRoute
+  FractalCubeRoute: typeof FractalCubeRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
+  InstancedCubeRoute: typeof InstancedCubeRoute
   RotatingCubeRoute: typeof RotatingCubeRoute
   TextureCubeRoute: typeof TextureCubeRoute
 }
@@ -85,11 +137,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RotatingCubeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/instancedCube': {
+      id: '/instancedCube'
+      path: '/instancedCube'
+      fullPath: '/instancedCube'
+      preLoaderRoute: typeof InstancedCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/helloTriangle': {
       id: '/helloTriangle'
       path: '/helloTriangle'
       fullPath: '/helloTriangle'
       preLoaderRoute: typeof HelloTriangleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fractalCube': {
+      id: '/fractalCube'
+      path: '/fractalCube'
+      fullPath: '/fractalCube'
+      preLoaderRoute: typeof FractalCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cubemap': {
+      id: '/cubemap'
+      path: '/cubemap'
+      fullPath: '/cubemap'
+      preLoaderRoute: typeof CubemapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,7 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CubemapRoute: CubemapRoute,
+  FractalCubeRoute: FractalCubeRoute,
   HelloTriangleRoute: HelloTriangleRoute,
+  InstancedCubeRoute: InstancedCubeRoute,
   RotatingCubeRoute: RotatingCubeRoute,
   TextureCubeRoute: TextureCubeRoute,
 }

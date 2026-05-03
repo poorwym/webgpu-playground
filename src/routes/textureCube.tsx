@@ -152,6 +152,8 @@ function TexturedCube() {
         usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
       })
 
+      // console.log('Uniform Buffer Label:', uniformBuffer.label)
+
       // Texture
       const response = await fetch('logo192.png')
       const imageBitmap = await createImageBitmap(await response.blob())
