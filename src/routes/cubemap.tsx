@@ -134,13 +134,16 @@ function CubemapDemo() {
         3000,
       )
 
+      console.log('projectionMatrix', projectionMatrix)
+
       const modelMatrix = mat4.identity()
       const viewMatrix = mat4.identity()
       const mvpInv = mat4.create()
       const tmp = mat4.create()
 
       function updateMatrix() {
-        const now = Date.now() / 800
+        // const now = Date.now() / 800
+        const now = 1
 
         mat4.rotate(viewMatrix, [1, 0, 0], (Math.PI / 10) * Math.sin(now), tmp)
         mat4.rotate(tmp, [0, 1, 0], now * 0.2, tmp)
