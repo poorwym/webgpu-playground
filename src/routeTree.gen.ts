@@ -15,6 +15,7 @@ import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as FractalCubeRouteImport } from './routes/fractalCube'
 import { Route as CubemapRouteImport } from './routes/cubemap'
+import { Route as ComputeShaderRouteImport } from './routes/computeShader'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TextureCubeRoute = TextureCubeRouteImport.update({
@@ -47,6 +48,11 @@ const CubemapRoute = CubemapRouteImport.update({
   path: '/cubemap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComputeShaderRoute = ComputeShaderRouteImport.update({
+  id: '/computeShader',
+  path: '/computeShader',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComputeShaderRoute: typeof ComputeShaderRoute
   CubemapRoute: typeof CubemapRoute
   FractalCubeRoute: typeof FractalCubeRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CubemapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/computeShader': {
+      id: '/computeShader'
+      path: '/computeShader'
+      fullPath: '/computeShader'
+      preLoaderRoute: typeof ComputeShaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComputeShaderRoute: ComputeShaderRoute,
   CubemapRoute: CubemapRoute,
   FractalCubeRoute: FractalCubeRoute,
   HelloTriangleRoute: HelloTriangleRoute,
