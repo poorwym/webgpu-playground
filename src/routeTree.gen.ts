@@ -11,11 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TextureCubeRouteImport } from './routes/textureCube'
 import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
+import { Route as RadixSortRouteImport } from './routes/radixSort'
 import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as FractalCubeRouteImport } from './routes/fractalCube'
 import { Route as CubemapRouteImport } from './routes/cubemap'
-import { Route as ComputeShaderRouteImport } from './routes/computeShader'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TextureCubeRoute = TextureCubeRouteImport.update({
@@ -26,6 +26,11 @@ const TextureCubeRoute = TextureCubeRouteImport.update({
 const RotatingCubeRoute = RotatingCubeRouteImport.update({
   id: '/rotatingCube',
   path: '/rotatingCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RadixSortRoute = RadixSortRouteImport.update({
+  id: '/radixSort',
+  path: '/radixSort',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstancedCubeRoute = InstancedCubeRouteImport.update({
@@ -48,11 +53,6 @@ const CubemapRoute = CubemapRouteImport.update({
   path: '/cubemap',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ComputeShaderRoute = ComputeShaderRouteImport.update({
-  id: '/computeShader',
-  path: '/computeShader',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,32 +61,32 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/computeShader': typeof ComputeShaderRoute
   '/cubemap': typeof CubemapRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/textureCube': typeof TextureCubeRoute
 }
@@ -94,42 +94,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/radixSort'
     | '/rotatingCube'
     | '/textureCube'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/radixSort'
     | '/rotatingCube'
     | '/textureCube'
   id:
     | '__root__'
     | '/'
-    | '/computeShader'
     | '/cubemap'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/radixSort'
     | '/rotatingCube'
     | '/textureCube'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ComputeShaderRoute: typeof ComputeShaderRoute
   CubemapRoute: typeof CubemapRoute
   FractalCubeRoute: typeof FractalCubeRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
   InstancedCubeRoute: typeof InstancedCubeRoute
+  RadixSortRoute: typeof RadixSortRoute
   RotatingCubeRoute: typeof RotatingCubeRoute
   TextureCubeRoute: typeof TextureCubeRoute
 }
@@ -148,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/rotatingCube'
       fullPath: '/rotatingCube'
       preLoaderRoute: typeof RotatingCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/radixSort': {
+      id: '/radixSort'
+      path: '/radixSort'
+      fullPath: '/radixSort'
+      preLoaderRoute: typeof RadixSortRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/instancedCube': {
@@ -178,13 +185,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CubemapRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/computeShader': {
-      id: '/computeShader'
-      path: '/computeShader'
-      fullPath: '/computeShader'
-      preLoaderRoute: typeof ComputeShaderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -197,11 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ComputeShaderRoute: ComputeShaderRoute,
   CubemapRoute: CubemapRoute,
   FractalCubeRoute: FractalCubeRoute,
   HelloTriangleRoute: HelloTriangleRoute,
   InstancedCubeRoute: InstancedCubeRoute,
+  RadixSortRoute: RadixSortRoute,
   RotatingCubeRoute: RotatingCubeRoute,
   TextureCubeRoute: TextureCubeRoute,
 }
