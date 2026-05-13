@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TextureCubeRouteImport } from './routes/textureCube'
+import { Route as ShadowMappingRouteImport } from './routes/shadowMapping'
 import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
 import { Route as RadixSortRouteImport } from './routes/radixSort'
 import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
@@ -22,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TextureCubeRoute = TextureCubeRouteImport.update({
   id: '/textureCube',
   path: '/textureCube',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShadowMappingRoute = ShadowMappingRouteImport.update({
+  id: '/shadowMapping',
+  path: '/shadowMapping',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RotatingCubeRoute = RotatingCubeRouteImport.update({
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/instancedCube': typeof InstancedCubeRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/shadowMapping': typeof ShadowMappingRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/instancedCube': typeof InstancedCubeRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/shadowMapping': typeof ShadowMappingRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/instancedCube': typeof InstancedCubeRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
+  '/shadowMapping': typeof ShadowMappingRoute
   '/textureCube': typeof TextureCubeRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/instancedCube'
     | '/radixSort'
     | '/rotatingCube'
+    | '/shadowMapping'
     | '/textureCube'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/instancedCube'
     | '/radixSort'
     | '/rotatingCube'
+    | '/shadowMapping'
     | '/textureCube'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/instancedCube'
     | '/radixSort'
     | '/rotatingCube'
+    | '/shadowMapping'
     | '/textureCube'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   InstancedCubeRoute: typeof InstancedCubeRoute
   RadixSortRoute: typeof RadixSortRoute
   RotatingCubeRoute: typeof RotatingCubeRoute
+  ShadowMappingRoute: typeof ShadowMappingRoute
   TextureCubeRoute: typeof TextureCubeRoute
 }
 
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/textureCube'
       fullPath: '/textureCube'
       preLoaderRoute: typeof TextureCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shadowMapping': {
+      id: '/shadowMapping'
+      path: '/shadowMapping'
+      fullPath: '/shadowMapping'
+      preLoaderRoute: typeof ShadowMappingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rotatingCube': {
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   InstancedCubeRoute: InstancedCubeRoute,
   RadixSortRoute: RadixSortRoute,
   RotatingCubeRoute: RotatingCubeRoute,
+  ShadowMappingRoute: ShadowMappingRoute,
   TextureCubeRoute: TextureCubeRoute,
 }
 export const routeTree = rootRouteImport
