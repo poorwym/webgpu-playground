@@ -17,6 +17,7 @@ import { Route as RadixSortRouteImport } from './routes/radixSort'
 import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as FractalCubeRouteImport } from './routes/fractalCube'
+import { Route as DeferredRenderingRouteImport } from './routes/deferredRendering'
 import { Route as CubemapRouteImport } from './routes/cubemap'
 import { Route as BitonicSortRouteImport } from './routes/bitonicSort'
 import { Route as IndexRouteImport } from './routes/index'
@@ -61,6 +62,11 @@ const FractalCubeRoute = FractalCubeRouteImport.update({
   path: '/fractalCube',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeferredRenderingRoute = DeferredRenderingRouteImport.update({
+  id: '/deferredRendering',
+  path: '/deferredRendering',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CubemapRoute = CubemapRouteImport.update({
   id: '/cubemap',
   path: '/cubemap',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bitonicSort': typeof BitonicSortRoute
   '/cubemap': typeof CubemapRoute
+  '/deferredRendering': typeof DeferredRenderingRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bitonicSort': typeof BitonicSortRoute
   '/cubemap': typeof CubemapRoute
+  '/deferredRendering': typeof DeferredRenderingRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/bitonicSort': typeof BitonicSortRoute
   '/cubemap': typeof CubemapRoute
+  '/deferredRendering': typeof DeferredRenderingRoute
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/'
     | '/bitonicSort'
     | '/cubemap'
+    | '/deferredRendering'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/'
     | '/bitonicSort'
     | '/cubemap'
+    | '/deferredRendering'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/'
     | '/bitonicSort'
     | '/cubemap'
+    | '/deferredRendering'
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BitonicSortRoute: typeof BitonicSortRoute
   CubemapRoute: typeof CubemapRoute
+  DeferredRenderingRoute: typeof DeferredRenderingRoute
   FractalCubeRoute: typeof FractalCubeRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
   InstancedCubeRoute: typeof InstancedCubeRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FractalCubeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/deferredRendering': {
+      id: '/deferredRendering'
+      path: '/deferredRendering'
+      fullPath: '/deferredRendering'
+      preLoaderRoute: typeof DeferredRenderingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cubemap': {
       id: '/cubemap'
       path: '/cubemap'
@@ -259,6 +279,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BitonicSortRoute: BitonicSortRoute,
   CubemapRoute: CubemapRoute,
+  DeferredRenderingRoute: DeferredRenderingRoute,
   FractalCubeRoute: FractalCubeRoute,
   HelloTriangleRoute: HelloTriangleRoute,
   InstancedCubeRoute: InstancedCubeRoute,
