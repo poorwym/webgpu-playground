@@ -20,7 +20,8 @@ const ambientFactor = 0.2;
 
 @fragment
 fn main(input: FragmentInput) -> @location(0) vec4f {
-    let lightToFragment = input.fragPos - scene.lightPos;
+    var lightToFragment = input.fragPos - scene.lightPos;
+    // lightToFragment = vec3f(lightToFragment.x, -lightToFragment.y, lightToFragment.z);
     // let lightToFragment = -input.fragPos + scene.lightPos;
     let currentDepth = length(lightToFragment) / scene.farPlane;
     let bias = 0.5 / scene.farPlane;

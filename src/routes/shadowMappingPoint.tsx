@@ -379,7 +379,7 @@ function ShadowPointDragonDemo() {
         2000.0,
       )
 
-      // const lightPosition = vec3.fromValues(0, 30, 0)
+      // const lightPosition = vec3.fromValues(0, 35, 0)
       const lightPosition = vec3.fromValues(0, 60, -40)
 
       const lightProjectionMatrix = mat4.perspective(
