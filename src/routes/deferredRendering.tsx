@@ -463,7 +463,8 @@ function DeferredRenderingDemo() {
       )
 
       function getCameraViewProjMatrix() {
-        const rad = Math.PI * (Date.now() / 5000)
+        // const rad = Math.PI * (Date.now() / 5000)
+        const rad = 0
         const rotation = mat4.rotateY(mat4.translation(origin), rad)
         const rotatedEyePosition = vec3.transformMat4(eyePosition, rotation)
         const viewMatrix = mat4.lookAt(rotatedEyePosition, origin, upVector)
@@ -547,11 +548,7 @@ function DeferredRenderingDemo() {
     const configUniformBuffer = configUniformBufferRef.current
     if (!device || !configUniformBuffer) return
 
-    device.queue.writeBuffer(
-      configUniformBuffer,
-      0,
-      new Uint32Array([value]),
-    )
+    device.queue.writeBuffer(configUniformBuffer, 0, new Uint32Array([value]))
   }
 
   return (
@@ -565,7 +562,9 @@ function DeferredRenderingDemo() {
           max={kMaxNumLights}
           step={1}
           value={numLights}
-          onChange={(event) => handleNumLightsChange(event.target.valueAsNumber)}
+          onChange={(event) =>
+            handleNumLightsChange(event.target.valueAsNumber)
+          }
         />
         <output className="w-10 text-right tabular-nums">{numLights}</output>
       </label>
