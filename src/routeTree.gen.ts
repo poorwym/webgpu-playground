@@ -14,6 +14,7 @@ import { Route as ShadowMappingPointRouteImport } from './routes/shadowMappingPo
 import { Route as ShadowMappingRouteImport } from './routes/shadowMapping'
 import { Route as RotatingCubeRouteImport } from './routes/rotatingCube'
 import { Route as RadixSortRouteImport } from './routes/radixSort'
+import { Route as ParticlesRouteImport } from './routes/particles'
 import { Route as InstancedCubeRouteImport } from './routes/instancedCube'
 import { Route as HelloTriangleRouteImport } from './routes/helloTriangle'
 import { Route as FractalCubeRouteImport } from './routes/fractalCube'
@@ -45,6 +46,11 @@ const RotatingCubeRoute = RotatingCubeRouteImport.update({
 const RadixSortRoute = RadixSortRouteImport.update({
   id: '/radixSort',
   path: '/radixSort',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParticlesRoute = ParticlesRouteImport.update({
+  id: '/particles',
+  path: '/particles',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstancedCubeRoute = InstancedCubeRouteImport.update({
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/particles': typeof ParticlesRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/shadowMapping': typeof ShadowMappingRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/particles': typeof ParticlesRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/shadowMapping': typeof ShadowMappingRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/fractalCube': typeof FractalCubeRoute
   '/helloTriangle': typeof HelloTriangleRoute
   '/instancedCube': typeof InstancedCubeRoute
+  '/particles': typeof ParticlesRoute
   '/radixSort': typeof RadixSortRoute
   '/rotatingCube': typeof RotatingCubeRoute
   '/shadowMapping': typeof ShadowMappingRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/particles'
     | '/radixSort'
     | '/rotatingCube'
     | '/shadowMapping'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/particles'
     | '/radixSort'
     | '/rotatingCube'
     | '/shadowMapping'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/fractalCube'
     | '/helloTriangle'
     | '/instancedCube'
+    | '/particles'
     | '/radixSort'
     | '/rotatingCube'
     | '/shadowMapping'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   FractalCubeRoute: typeof FractalCubeRoute
   HelloTriangleRoute: typeof HelloTriangleRoute
   InstancedCubeRoute: typeof InstancedCubeRoute
+  ParticlesRoute: typeof ParticlesRoute
   RadixSortRoute: typeof RadixSortRoute
   RotatingCubeRoute: typeof RotatingCubeRoute
   ShadowMappingRoute: typeof ShadowMappingRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/radixSort'
       fullPath: '/radixSort'
       preLoaderRoute: typeof RadixSortRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/particles': {
+      id: '/particles'
+      path: '/particles'
+      fullPath: '/particles'
+      preLoaderRoute: typeof ParticlesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/instancedCube': {
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   FractalCubeRoute: FractalCubeRoute,
   HelloTriangleRoute: HelloTriangleRoute,
   InstancedCubeRoute: InstancedCubeRoute,
+  ParticlesRoute: ParticlesRoute,
   RadixSortRoute: RadixSortRoute,
   RotatingCubeRoute: RotatingCubeRoute,
   ShadowMappingRoute: ShadowMappingRoute,
